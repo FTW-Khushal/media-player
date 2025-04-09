@@ -143,8 +143,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ album }) => {
               max={duration}
               step={0.1}
               value={currentTime}
-              onChange={(e, value) =>
-                handleSeek(typeof value === "number" ? value : value[0])
+              onChange={(event, value) =>
+                handleSeek(typeof value === "number" ? value : (value as number[])[0])
               }
               sx={{ flexGrow: 1, padding: "0 !important", display: "block" }}
             />
@@ -261,8 +261,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ album }) => {
               max={duration}
               step={0.1}
               value={currentTime}
-              onChange={(e, value) =>
-                handleSeek(typeof value === "number" ? value : value[0])
+              onChange={(event, value) =>
+                handleSeek(typeof value === "number" ? value : (value as number[])[0])
               }
               sx={{ flexGrow: 1, padding: "0 !important", display: "block" }}
             />

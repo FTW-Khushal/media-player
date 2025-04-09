@@ -9,15 +9,11 @@ import { Album } from "../../types/Album";
 const AlbumList: React.FC = () => {
   const [selectedPlaylist, setSelectedPlayList] = React.useState<Album | null>(null);
 
-  const sanitizePlaylists = (data: Album[]) => {
-    return data.playlists.map((playlist: Album) => ({
-      ...playlist,
-      artist: playlist["artist:"], // Map "artist:" to "artist"
-      tracks: playlist.tracks, // Keep tracks as is
-    }));
-  };
 
-  const albums: Album[] = sanitizePlaylists(playlists);
+  const albums: Album[] = playlists.playlists.map((playlist) => ({
+    ...playlist,
+    artist: playlist.artist || playlist["artist:"],
+  }));
 
 
   return (
@@ -25,9 +21,9 @@ const AlbumList: React.FC = () => {
       
       <Grid container spacing={2} p={2}>
         {albums.map((album, index) => (
-          <Grid  key={index} xs={12} sm={6} md={4} lg={3} onClick={() => setSelectedPlayList(album)}>
+          <Grid  key={index}  onClick={() => setSelectedPlayList(album)}>
             
-            <AlbumItem album={album} index={index} />
+            <AlbumItem album={album} />
           </Grid>
         ))}
         
